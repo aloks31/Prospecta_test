@@ -1,0 +1,89 @@
+Theoretical Challenge
+ 
+Suppose you have a CSV file with the data below.
+ 
+A1: 5, A2: 7, A3: 9, B1: 3, B2: 8, B3: =4+5, C1: =5+A1, C2: =A2+B2, C3: =C2+B3
+ 
+This can be represented in an excel sheet below:
+ 
+
+
+ 
+
+   A    B    C
+
+1  5    3    =5+A1
+
+2  7    8    =A2+B2
+
+3  9    =4+5    =C2+B3
+
+
+ 
+I want a program that will take the CSV input above and produce CSV output with the results.  
+If it is a value, then return a value.  
+If it is a formula then calculate the formula and return the value of that formula.
+ 
+ 
+ 
+Q1)  How will you tackle the challenge above?
+Ans= 
+ 
+     1 :  First,put this information inside csv.file in a single line using.
+          
+          BufferedReader bufferedReader = new BufferedReader(new FileReader("csv.file");
+          
+         
+ 
+     2 :  Now, With the help of BufferedReader class object, I will read my data by using readLine() method.
+ 
+          String data = bufferedReader.readLine();
+          
+ 
+     3 : after that convert string in Array of String using split method.
+ 
+         String[] keys = data.split(",");
+         
+ 
+     4 : then, I will create a map and store it in the form of key-value pairs.
+ 
+ 
+     5 : After that I will create One more Map for converting those strings values in the form of Integer value.
+         With the help of running a loop on first map I will check that there is simple Integer value or any 
+         function is there.
+         If there will be any function then solve it and after that put the final Integer value for that key in
+         the second map.
+        
+         
+step 6 : And at the end, I will loop the map using entry and show the result in form of new key-value pairs.
+           
+           
+         Map<String,String> map1 = new LinkedHashMap<>();
+ 		 
+ 		 Map<String,Integer> map1 = new LinkedHashMap<>();
+ 		 
+ 		 for(int i=0;i<key.length();i++){
+ 		 
+ 		      String[] str = keys[i].split(":");
+ 		      map.put(str[0].trim(),str[1].trim());
+ 		      
+ 		 }
+
+
+
+
+Q2)  What type of errors you would you check for?
+Ans= 
+     1. check my string in proper format or not.
+         
+     2. In finding that it is normal Integer value of function of string which key here.
+        I will use Regular Expressions to match it and finding if there will 
+         be any Integer value without connected with any Character at the front of that.
+         
+     3. And we need to care about = , : and + signs as well.
+
+
+Q3)  How might a user break your code?
+Ans= User can break my code by doing some changes inside CSV file. Like if user will change 
+     the format of input of input then this code will not work and if user will value of 
+     numbers which more than the Max value of Integer then also it will not work properly.
